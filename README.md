@@ -2,7 +2,13 @@
 ## Dibuat menggunakan Unity Game Engine
 
 ### Changelog
-versi alpha_0.0.1 :
+
+#### alpha_0.0.2 :
+1. Bug pas munculin nyawa udah ga ada
+1. Bug di level-level juga hilang
+Semoga kedua hal di atas benar
+
+#### alpha_0.0.1 :
 1. Gamenya selesai! Yey!
 
 ### To-do List di next version
