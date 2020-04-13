@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
+[System.Serializable]
 public class LevelEnd : UnityEvent<bool, int> { };
+[System.Serializable]
+public class LateLevelEnd : UnityEvent<bool, int> { };
 
 public class GlobalEvent : MonoBehaviour
 {
     public LevelEnd onLevelEnd;
-    public UnityEvent onGameEnd;
+    public LateLevelEnd lateLevelEnd;
 
     public static GlobalEvent current;
 
@@ -19,13 +20,13 @@ public class GlobalEvent : MonoBehaviour
         current = this;
     }
 
-    public void LevelEnd(bool result, int score)
+    public void LevelEnd(bool result, int Addedscore)
     {
-        onLevelEnd?.Invoke(result, score);
+        onLevelEnd?.Invoke(result, Addedscore);
     }
 
-    public void GameEnd()
+    public void LateLevelEnd(bool result, int AddedScore)
     {
-        onGameEnd?.Invoke();
+        lateLevelEnd?.Invoke(result, AddedScore);
     }
 }

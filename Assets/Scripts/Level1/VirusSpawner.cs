@@ -44,7 +44,7 @@ public class VirusSpawner : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
 
-            yield return new WaitForSeconds(spawnTime / TimeManager.timeScale);
+            yield return new WaitForSeconds(spawnTime / ScoringSystem.difficulty / TimeManager.timeScale);
         }
 
     }

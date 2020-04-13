@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Hearts : MonoBehaviour
 {
-    public GameObject[] hearts;
+    public GameObject heart;
+
+    public float xOffset = 224f;
 
     Animator animator;
 
@@ -12,41 +14,65 @@ public class Hearts : MonoBehaviour
     void Awake()
     {
         currentLives = PlayerPrefs.GetInt("current_lives", 3);
-
-        //BUKAN SAFE SOLUTION BUT GUA UDAH MAGER JADI BODO AMAT
-        //HARUSNYA FOREACH LIFE INSTANTIATE TAPI NANTI NGEREFER KE PARENT SUSAH LAGI
-        //UDAH LAH YA GINI AJA ANJIR MAGER
-        if (currentLives < 3)
-        {
-            for (int i = 2; i > currentLives; i--)
-            {
-                Destroy(hearts[i]);
-            }
-        }
-
     }
 
-    public void UpdateHearts()
+    public void UpdateHearts(bool result, int addedScore)
     {
-        animator = GetComponent<Animator>();
         currentLives = PlayerPrefs.GetInt("current_lives", 3);
 
-        animator.SetInteger("heartsLeft", currentLives);
-
-        if (currentLives < 3)
+        if (result)
         {
-            StartCoroutine(WaitAndDestroy(currentLives));
+            ShowHearts(currentLives);
+        }
+        else
+        {
+            GameObject[] hearts = new GameObject[currentLives + 1];
+
+            ShowHearts(currentLives + 1);
+
+            Debug.Log("hai aku childcount : " + transform.childCount);
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Debug.Log("hai aku index : " + i);
+
+                hearts[i] = transform.GetChild(i).gameObject;
+            }
+
+            StartCoroutine(Die(hearts[currentLives], transform));
         }
     }
 
-    IEnumerator WaitAndDestroy(int heartIndex)
+    void ShowHearts(int count)
     {
-        yield return new WaitForSeconds(0.5f);
+        RectTransform heartRect = heart.GetComponent<RectTransform>();
 
-        if (heartIndex != 0)
+        Vector2 pos = heartRect.anchoredPosition;
+
+        for (int i = 0; i < count; i++)
         {
-            Destroy(hearts[heartIndex]);
+            GameObject temp = Instantiate(heart, transform);
+            temp.GetComponent<RectTransform>().anchoredPosition = pos;
+
+            pos.x += xOffset;
         }
-        
+    }
+
+    IEnumerator Die(GameObject heart, Transform hearts)
+    {
+        RectTransform rect = heart.GetComponent<RectTransform>();
+
+        heart.transform.SetParent(hearts.parent);
+
+        Vector2 target = new Vector2(rect.position.x, rect.position.y + 500); 
+
+        while (heart.transform.position.y < target.y)
+        {
+            heart.transform.Translate(Vector2.up);
+
+            yield return new WaitForSeconds(0.008f);
+        }
+
+        Debug.Log("JALAN DONG :\")");
     }
 }

@@ -167,8 +167,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  lateLevelEnd:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 2474523070988077852}
         m_MethodName: UpdateHearts
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1007726253445762530}
+        m_MethodName: UpdateScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -189,31 +203,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1007726253445762530}
-        m_MethodName: UpdateScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1007726253445762530}
-        m_MethodName: PlaySound
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onGameEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9161962535030467890
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +575,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9161962535030467889}
     m_Modifications:
+    - target: {fileID: 2533025446162766290, guid: 90bfe3e9c8e475d419ea084d592db3e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533025447164638598, guid: 90bfe3e9c8e475d419ea084d592db3e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2533025447203128100, guid: 90bfe3e9c8e475d419ea084d592db3e8,
         type: 3}
       propertyPath: m_Name

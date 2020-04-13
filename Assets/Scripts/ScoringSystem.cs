@@ -25,15 +25,19 @@ public class ScoringSystem : MonoBehaviour
         PlayerPrefs.SetInt("current_score", currentScore);
         PlayerPrefs.SetInt("current_lives", currentLives);
 
-        Debug.Log("Current Lives : " + currentLives + ", Current Score : " + currentScore);
+        Debug.Log("Current Lives : " + currentLives + ", Current Score : " + currentScore + " -SCORING SYSTEM");
     }
 
-    public void SaveScore(bool result, int score)
+    public void SaveScore(bool result, int Addedscore)
     {
-        currentScore += score;
+        currentScore += Addedscore;
         PlayerPrefs.SetInt("current_score", currentScore);
 
-        if (!result)
+        if (result)
+        {
+            PlayerPrefs.SetInt("current_lives", currentLives);
+        }
+        else
         {
             if (currentLives > 0)
             {
@@ -44,10 +48,10 @@ public class ScoringSystem : MonoBehaviour
                 PlayerPrefs.SetInt("current_lives", 0);
             }
         }
-        else
-        {
-            PlayerPrefs.SetInt("current_lives", currentLives);
-        }
+
+        GlobalEvent.current.LateLevelEnd(result, Addedscore);
+
+        Debug.Log("SaveScore duluan");
     }
 
     public void Clear()

@@ -21,20 +21,14 @@ public class EndLevelMenu : MonoBehaviour
         int currentScore = PlayerPrefs.GetInt("current_score", 0);
         int currentLives = PlayerPrefs.GetInt("current_lives", 0);
 
-        if (result)
-        {
-            PauseAndShow();
-        }
-        else
-        {
-            PauseAndShow();
-        }
-    }
-
-    void PauseAndShow()
-    {
         TimeManager.localTimeScale = 0f;
         endPanel.SetActive(true);
+
+        if (!result)
+        {
+            audioSource.Play();
+        }
+
     }
 
     public void UpdateScore()
@@ -42,14 +36,6 @@ public class EndLevelMenu : MonoBehaviour
         int currentScore = PlayerPrefs.GetInt("current_score", 0);
 
         scoreText.text = "Skor: " + currentScore;
-    }
-
-    public void PlaySound(bool result, int score)
-    {
-        if (!result)
-        {
-            audioSource.Play();
-        }
     }
 
 }
